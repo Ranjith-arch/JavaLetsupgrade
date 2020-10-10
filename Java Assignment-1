@@ -1,0 +1,26 @@
+#Java Assignment 1
+
+
+public class Main
+{
+  public static void main(String Agrs[])
+  {
+    Employee Ee = new Employee();
+    Ee.show("Ranjith", 20, "Chennai");
+  }
+}
+class Employee
+{
+  String name;
+  int age;
+  String city;
+  void show(String name,int age,String city)
+  {
+    this.name= name;
+    this.age= age;
+    this.city= city;
+    System.out.println("The name is" +name);
+    System.out.println("The age is " +age);
+    System.out.println("The City is " +city);
+  }
+}
