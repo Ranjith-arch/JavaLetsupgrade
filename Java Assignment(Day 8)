@@ -1,0 +1,257 @@
+//Question 1
+
+public class EmployeeDemo {
+    public static void main(String[] args) {
+        Employee e1 = new Employee();
+        e1.name = "Ranjith";
+        e1.ssn = "555-12-345";
+        e1.emailAddress = "ranjith@company.com";
+
+        Employee e2 = new Employee();
+        e2.name = "Tom";
+        e2.ssn = "456-78-901";
+        e2.yearOfBirth = 2000;
+
+        System.out.println("Name: " + e1.name);
+        System.out.println("SSN: " + e1.ssn);
+        System.out.println("Email Address: " + e1.emailAddress);
+        System.out.println("Year Of Birth: " + e1.yearOfBirth);
+
+        System.out.println("Name: " + e2.name);
+        System.out.println("SSN: " + e2.ssn);
+        System.out.println("Email Address: " + e2.emailAddress);
+        System.out.println("Year Of Birth: " + e2.yearOfBirth);
+
+    }
+}
+
+//Output
+
+Name: Ranjith
+SSN: 555-12-345
+Email Address: ranjith@company.com
+Year Of Birth: 0
+Name: Tom
+SSN: 456-78-901
+Email Address: null
+Year Of Birth: 2000
+
+//Question 2
+
+public class Doctor extends Person
+{
+    private double officeFee;
+    private String specialty;
+
+    // Six constructors
+    // Note that there is no constructor that specifies
+    // just a specialty.
+
+    public Doctor()
+    {
+        super();
+        officeFee = 150.00;// AMA specified minimum wage
+        specialty = ("None given.");
+    }
+
+    public Doctor (String aName)
+    {
+        super(aName);
+        officeFee = 150.00;// AMA specified minimum wage
+        specialty = ("None given.");
+    }
+
+    public Doctor (String aName, double theOfficeFee)
+    {
+        super(aName);
+        officeFee = theOfficeFee;
+        specialty = ("None given.");
+    }
+
+    public Doctor (String aName, String theSpecialty)
+    {
+        super(aName);
+        officeFee = 150.00;// AMA specified minimum wage
+        specialty = theSpecialty;
+    }
+
+    public Doctor (double theOfficeFee, String theSpecialty)
+    {
+        super();
+        officeFee = theOfficeFee;
+        specialty = theSpecialty;
+    }
+
+    public Doctor (String aName, double theOfficeFee, String theSpecialty)
+    {
+        super(aName);
+        officeFee = theOfficeFee;
+        specialty = theSpecialty;
+    }
+
+    // Methods to display (write) values of data items
+
+    // Write all values
+
+    public void writeOutput()
+    {
+        writeName();
+        writeOfficeFee();
+        writeSpecialty();
+    }
+
+    // Write name: calls writeOutput() from parent class
+
+    public void writeName()
+    {
+        super.writeOutput();
+    }
+
+    public void writeOfficeFee()
+    {
+        System.out.println("Office Fee: $" + officeFee);
+    }
+
+    public void writeSpecialty()
+    {
+        System.out.println("Specialty: " + specialty);
+    }
+
+    // Methods to set parameter values
+
+    // Change name: use setName from parent class, Person
+
+    // Set all three parameters
+
+    public void set(
+            String newName, double newOfficeFee, String newSpecialty)
+    {
+        super.setName(newName);
+        officeFee = newOfficeFee;
+        specialty = newSpecialty;
+    }
+    
+    public void setOfficeFee(double newOfficeFee)
+    {
+        officeFee = newOfficeFee;
+    }
+
+    public void setSpecialty(String newSpecialty)
+    {
+        specialty = newSpecialty;
+    }
+
+
+    // Return name: use getName from parent class, Person
+
+    public double getOfficeFee()
+    {
+        return officeFee;
+    }
+
+    public String getSpecialty()
+    {
+        return specialty;
+    }
+
+    // Equals method
+
+    public boolean equals(Doctor otherDoctor)
+    {
+        return(this.sameName(otherDoctor)
+          && this.getOfficeFee() == otherDoctor.getOfficeFee()
+          && this.specialty.equalsIgnoreCase(otherDoctor.getSpecialty()));
+    }
+}
+
+//Question 3
+import java.util.*;
+
+//employee class implementing comparable interface for array of objects
+class Employee implements Comparable<Employee> {
+ private String name;
+ privateint empId;
+ //constructor
+ public Employee(String name, int empId) {
+  this.name = name;
+  this.empId = empId;
+ }
+
+ public String getName() {
+  return name;
+ }
+
+ publicintgetempId() {
+  return empId;
+ }
+ 
+ //overridden functions since we are working with array of objects
+ @Override
+ public String toString() {
+  return "{" + "name='" + name + '\'' +
+     ", EmpId=" + empId + '}';
+ }
+
+ //compareTo method overridden for sorting array of objects
+ @Override
+ publicint compareTo(Employee o) {
+  if (this.empId != o.getempId()) {
+   returnthis.empId - o.getempId();
+  }
+  returnthis.name.compareTo(o.getName());
+ }
+}
+
+//main class
+class Main {
+ public static void main(String[] args)
+ {
+  //array of Employee objects
+  Employee[] employees = { new Employee("Rick", 1), new Employee("Sam", 20),
+     new Employee("Adi", 5), new Employee("Ben", 10) };
+
+  //print original array
+  System.out.println("Original Array of Employee objects:");
+  System.out.println(Arrays.toString(employees));
+  //sort array on empId
+  Arrays.sort(employees);
+  //display sorted array
+  System.out.println("\nSorted Array of Employee objects:");
+  System.out.println(Arrays.toString(employees));
+ }
+}
+
+//Question 4
+
+class Main{
+   public static void main(String args[]){
+     //create array of employee object  
+    Employee[] obj = new Employee[2] ;
+
+     //create & initialize actual employee objects using constructor
+     obj[0] = new Employee(100,"ABC");
+     obj[1] = new Employee(200,"XYZ");
+
+     //display the employee object data
+     System.out.println("Employee Object 1:");
+     obj[0].showData();
+     System.out.println("Employee Object 2:");
+     obj[1].showData();
+  }
+}
+//Employee class with empId and name as attributes
+class Employee{
+  int empId;
+  String name;
+  //Employee class constructor
+  Employee(inteid, String n){
+     empId = eid;
+     name = n;
+  }
+public void showData(){
+   System.out.print("EmpId = "+empId + "  " + " Employee Name = "+name);
+   System.out.println();
+ }
+}
+ 
+
